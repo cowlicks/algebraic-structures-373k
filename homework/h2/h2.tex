@@ -45,6 +45,8 @@
 
 \makeindex
 
+\usepackage[parfill]{parskip}
+\usepackage[singlespacing]{setspace}
 \begin{document}
 
 
@@ -52,11 +54,11 @@
 
 \thispagestyle{plain}
 \begin{flushright}
-\large{\textbf{TYPE YOUR NAME HERE \\}
+\large{\textbf{Blake Griffith \\}
 \textbf{HW 2:} Chapter 2, 5.2, 5.4, 6.2, 6.4, 6.7, 6.10, 7.2, 7.4, 8.3, 8.4, 8.5, 8.6  \& \\
 Pre-Lecture Problems: Chapter 2, 5.1, 6.1, 7.1, 8.1\\
 M373K \\
-Type your collaborators here. If there isn't any, then delete this line\\
+%Type your collaborators here. If there isn't any, then delete this line\\
 Due 09/19, 2013 \\}
 \end{flushright}
 
@@ -73,7 +75,41 @@ Prove that the intersection $K \cap H $ of subgroups of a group $G$ is a subgrou
 \end{exer}
 
 \begin{proof}[Proof]
-Type your proof here!
+    
+\item[(a)] Show $K \cap H$ is a subgroup of $H$. Where $K$ and $H$ are
+    subgroups of $G$:
+
+    $K \cap H$ is contained in $H$ because it only contains items
+    which are in both $K$ and $H$.
+
+    We have closure. Consider $a$ and $b$ in $K \cap H$. Then $ab$ is in $K$
+    because $a$ and $b$ are in $K$ and $K$ is a group. Likewise $ab$ is in
+    $H$. So since $ab$ is in both $K$ and $H$, we know $ab$ is in $K \cap H$.
+
+    We have inverses. Again considering $a$, $a^{-1}$ must be in $K$ and $H$
+    since they both contain $a$ and are groups. So $a^{-1} \in K \cap H$. 
+
+    We have the identity, $I$. $K$ and $H$ are both groups so they must contain
+    $I$. So $K \cap H$ must contain I.
+
+\item[(b)] Show that if $K$ is a normal subgroup of $G$, then $K \cap H$ is a
+    normal subgroup of $H$:
+
+    By part (a), we know $K \cap H$ is a subgroup of $H$. So we must simply
+    show it is normal to $H$.  Recalling the definition of a normal subgroup we
+    must have for every $n$ in $K \cap H$ and every $h$ in $H$, $hnh^{-1}$ is
+    in $K \cap H$.
+
+    To see this, we consider $hnh^{-1} = c$. We know $c$ must be in $K$, since
+    $K$ is a normal subgroup of $G$ and $h$ is in $G$ and $n$ is in $K$. 
+    
+    We also know that $c$ must be in $H$. Since $h$ is in $H$, and $n$ is $K
+    \cap H$ and therefore in $H$. So $n$, $h$, and $h^{-1}$) are in the group
+    $H$, so the result must be in $H$.
+
+    So $c$ must be in $H$ and $K$, therefore it is in $K \cap H$. Since
+    $hnh^{-1}$ is in $K \cap H$ it is a normal subgroup.
+    
 \end{proof}
 
 
@@ -83,7 +119,31 @@ Let $f:\mathbb R^{+} \rightarrow \mathbb C^{\times}$ be the map $f(x)=e^{ix}$. P
 \end{exer}
 
 \begin{proof}[Proof]
-Type your proof here!
+
+    Let $a$ and $b$ be elements of $\mathbb R^+$ then we have
+    $$
+    f(a + b) = e^{i(a + b)}
+    f(a)f(b) = e^{ia} e^{ib} = e^{i(a + b)}
+    $$
+    So $f$ is a homomorphism since $f(a + b) = f(a)f(b)$.
+
+    To find the kernel of $f$ we consider the identity of $\mathbb C^{\times}$
+    which is $1$.  Using this and Euler's equation to solve we see $e^{ix} =
+    \cos(x) + i\sin(x) = 1$. Which requires $x = n 2 \pi$ for some integer $n$.
+    So our kernel is
+
+    $$
+    \ker f = K = \left\{x \vert x = n 2 \pi \text{ for any integer } n \right\}
+    $$
+
+    The image of $f$ is given by $f(x) = e^{ix} $ for all $x$ in $\mathbb R^+$.
+    This is simply a circle in the complex plane of radius one, centered at the
+    origin. We can write this as 
+    
+    $$
+    \text{im} f = f(\mathbb R^+) \left\{z \vert 1 = |z| \text{ for any complex number }z \right\}
+    $$
+
 \end{proof}
 
 %%%%%%%%%%%%6.2%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -92,9 +152,22 @@ Describe all homomorphisms $\phi: \mathbb Z^{+} \rightarrow \mathbb Z^+$. Determ
 \end{exer}
 
 \begin{proof}[Proof]
-Type your proof here!
-\end{proof}
 
+    For any $\phi$, the image of $\phi$ must be either $\mathbb Z$ or $n \mathbb Z$.
+    Since these are the only subgroups of $\mathbb Z^+$.
+
+    Any $\phi$ can be described by $\phi(1)$ since for any $a$ in $\mathbb Z$
+    we can write $\phi(a) = \phi(\underbrace{1 + \dots + 1}_{a \text{ times}})
+    = \underbrace{\phi(1) + \dots + \phi(1)}_{a \text{ times}} = a \phi(1)$.
+
+    Each $\phi(1)$ gives a distinct homomorphism. In the case $\phi(1) \neq 0 \text{ or } 1$, $\phi$ is
+    injective but not surjective. Since nothing maps to $1$. But each element of $\mathbb Z$ maps uniquely.
+
+    If $\phi(1) = 0$, $\phi$ is neither surjective (nothing $\mapsto 1$) nor injective (everything $\mapsto 0$).
+
+    If $\phi(1) = 1$, $\phi$ is the identity map so it is bijective (injective and surjective). 
+
+\end{proof}
 
 
 %%%%%%%%%%%%6.4%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -102,9 +175,13 @@ Type your proof here!
 \end{exer}
 
 \begin{proof}[Proof]
-Type your proof here!
-\end{proof}
 
+    For $a$, $b$ in group $G$. The products $ab$ and $ba$ are conjugate
+    elements if there exists an element $g$ in $G$ such that $ab = gbag^{-1}$.
+    This is satisfied if we take $g = b^{-1}$. From this it follows that $ab =
+    gbag^{-1} = b^{-1}bab = ab$ So $ab$ and $ba$ are conjugate elements.
+
+\end{proof}
 
 
 %%%%%%%%%%%%6.7%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -113,17 +190,43 @@ Let $H$ be a subgroup of $G$, and let $g$ be a fixed element of $G$. The \emph{c
 \end{exer}
 
 \begin{proof}[Proof]
-Type your proof here!
+
+    First, $gHg^{-1}$ is closed in $G$. We see this is we take an arbitrary $h$
+    in $H$ then $ghg^{-1}$ is in $G$ since it is the product of elements in $G$
+    which must be closed since it is a group.
+
+    Next, $gHg^{-1}$ contains an inverse for each of its elements. Again
+    consider $h$, and $g$, and let $a$ be some arbitrary element in the
+    conjugate subgroup, $a = ghg^{-1}$. Then $h^{-1}$ must exist in $H$ since
+    it is a group, and it must map to some element in the conjugate subgroup,
+    let it be $b = gh^{-1}g^{-1}$. Then $a$ and $b$ are inverse elements since
+    $ab = ghg^{-1}gh^{-1}g^{-1} = ghh^{-1}g^{-1} = gg^{-1} = 1$ and $ba =
+    gh^{-1}g^{-1}ghg^{-1} = gh^{-1}hg^{-1} = gg^{-1} = 1$. So the conjugate
+    subgroup has its inverses.
+
+    Finally, $gHg^{-1}$ contains the identity. Since $H$ has an identity, then
+    $gHg^{-1}$ has the element $g1g^{-1} = gg^{-1} = 1$. 
+
+    So $gHg^{-1}$ is a subgroup of $G$.
+
 \end{proof}
 
+
 %%%%%%%%%%%%6.10%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{exer}[6.10]Find all automorphisms of (a) a cyclis group of order $10$. (b) the symmetric group $S_3$.
+\begin{exer}[6.10]Find all automorphisms of (a) a cyclic group of order $10$. (b) the symmetric group $S_3$.
 
 \end{exer}
 
 \begin{proof}[Proof]
-Type your proof here!
+
+    For $\phi$ to be a automorphism we must have $\phi : G \rightarrow G$ and $\phi(ab) = \phi(a) \phi(b)$.
+
+\item[(a)]
+
+\item[(b)]
+
 \end{proof}
+
 
 %%%%%%%%%%%%7.2%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{exer}[7.2]An equivalence relation on $S$ is determined by the subset $R$ of $S \times S$ consisting of those pairs $(a,b)$ such that $a \sim b$. Write axioms for an equivalence relation in terms of the subset $R$.
@@ -131,54 +234,121 @@ Type your proof here!
 \end{exer}
 
 \begin{proof}[Proof]
-Type your proof here!
+
+\item[Transitive] If $(a, b)$ and $(b, c)$ are in $R$, then $(a, c)$ is in $R$.
+
+\item[Symmetric] If $(a, b)$ is in $R$, then so is $(b, a)$.
+
+\item[Reflexive] If any pair of $R$ contains $a$, then $R$ contains $(a, a)$.
+
 \end{proof}
+
 
 %%%%%%%%%%%%7.4%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{exer}[7.4] 
-A relation $R$ on the set of real numbers can be thought of a subset of the $(x,y)$-plane. With the notation of Exercise 7.2, explain the geometric meaning of the reflexive and symmetric properties.
+A relation $R$ on the set of real numbers can be thought of a subset of the
+$(x,y)$-plane. With the notation of Exercise 7.2, explain the geometric meaning
+of the reflexive and symmetric properties.
 
 \end{exer}
 
 \begin{proof}[Proof]
-Type your proof here!
+
+\item[Reflexive] This implies that for every set of coordinates $(x, y)$ in $R$
+    the corresponding points $(x, x)$ and $(y, y)$ are also in $R$. And they
+    lie on the line $x = y$.
+
+\item[Symmetric] This implies that for every set of coordinates $(x, y)$ in
+    $R$. There is a corresponding point $(y, x)$ which is also in $R$. This
+    point is a reflection of $(x, y)$ across the line $x = y$. 
+
 \end{proof}
 
 
 %%%%%%%%%%%%8.3%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{exer}[8.3] Does every group whose order is a power of $p$ contain an element of order $p$?
+\begin{exer}[8.3] Does every group whose order is a power of a prime $p$
+    contain an element of order $p$?
 
 \end{exer}
 
 \begin{proof}[Proof]
-Type your proof here!
+
+    Yes. The order of any subgroup must divide the order of the group by
+    Lagrange's theorem. Consider the group $G$ and an element in it $a$. The
+    order of $<a>$ must divide the order of the group. But since the group
+    order is a prime $p$, the order of $a$ must either be $p$ or $1$. If we
+    take $a \neq 1$ then its order must be $p$. So the group must contain an
+    element of order $p$.
+
 \end{proof}
 
 %%%%%%%%%%%%8.4%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{exer}[8.4] Does every group of order $35$ contain an element of order $5$? of order $7$? 
+\begin{exer}[8.4] Does every group of order $35$ contain an element of order
+    $5$? of order $7$? 
 
 \end{exer}
 
 \begin{proof}[Proof]
-Type your proof here!
+
+    In this group $G$, consider some element $a$ that is not the identity so
+    $\vert a \vert \neq 1$. Let $x = \vert a \vert$. $x$ must divide the order
+    of $G$ (see last problem) so it can be $5$, $7$, or $35$.
+
+    If $G$ contains an element $a$ of order $35$. Then $a^7$ and $a^5$ are in
+    the group, and $(a^7)^5 = (a^5)^7 = a^{35} = 1$ so there are elements of
+    order $5$ and $7$ in the group.
+
+    If $G$ does not contain an element of order $35$. Then it must contain
+    elements of order $7$ and/or $5$.
+
+    If we assume there are only elements of order $5$. Then each generator
+    produces $4$ unique elements.  But there must be several ($n$) of these
+    subgroups to fill $G$. But the number of elements produced by these $n$
+    subgroups is $1 + 4n$ (the $+1$ is from the identity). But this cannot
+    equal $35$ so we have a contradiction.
+
+    Likewise, for a group of order $7$ elements, we would need $\vert G \vert =
+    1 + 6n$ but this is a contradiction. 
+
+    So $G$ must have bothe order $7$ and order $5$ elements.
+
 \end{proof}
 
 %%%%%%%%%%%%8.5%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{exer}[8.5] A finite group contains an element $x$ of order $10$ and also an element $y$ of order $6$. What can be said about the order of $G$? 
+\begin{exer}[8.5] A finite group contains an element $x$ of order $10$ and also
+    an element $y$ of order $6$. What can be said about the order of $G$? 
 
 \end{exer}
 
 \begin{proof}[Proof]
-Type your proof here!
+
+    By the counting theorem the least it can be is order 30. Since 30 is the
+    LCM of 6 and 10.
+
 \end{proof}
 
 %%%%%%%%%%%%8.6%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{exer}[8.6] Let $\phi:G \rightarrow G'$ be a group homomorphism. Suppose that $|G|=18, |G'|=15$ and that $\phi$ is not the trivial homomorphism. What is the order of the kernel?
+\begin{exer}[8.6] Let $\phi:G \rightarrow G'$ be a group homomorphism. Suppose
+    that $|G|=18, |G'|=15$ and that $\phi$ is not the trivial homomorphism.
+    What is the order of the kernel?
 
 \end{exer}
 
 \begin{proof}[Proof]
-Type your proof here!
+    
+    Since ker $\phi$ is a subgroup in $G$, its order must divide $\vert G \vert = 18$ so its 
+    order can be 1, 2, 3, 6, or 18. 
+
+    Since im $\phi$ is a subgroup in $G'$, its order must divide $\vert G' \vert = 15$ so its
+    order can be 1, 3, 5, or 15.
+
+    We also know that $\lbrack G : \ker \phi] = \vert \text{im } \phi \vert$.
+    And the counting formula applied here is $\vert G \vert = \vert \text{ker }
+    \phi \vert \lbrack G : \text{ker } \phi \rbrack$.  Combining these we see
+    $\vert G \vert = \vert \text{ker } \phi \vert \vert \text{im } \phi \vert$.
+    This constraint gives us the solution: $\vert \text{ker } \phi \vert = 3
+    \text{ and } \vert \text{im } \phi \vert = 5$.
+
 \end{proof}
 
 \section*{Pre-Lecture Problems}
@@ -186,10 +356,33 @@ Type your proof here!
 \begin{exer}[5.1]  Let $\phi:G \rightarrow G'$ be a surjective group homomorphism. Prove that if $G$ is cyclic then $G'$ is cyclic. If $G$ is abelian then $G'$ is abelian.
 \end{exer}
 
-
-
 \begin{proof}[Proof]
-Type your proof here! 
+\item[(a)] Show $G'$ is cyclic if $G$ is cyclic.
+
+    Choose some $b$ in $G'$, since $\phi$ is surjective there exists some $c$
+    in $G$ such that $\phi(c) = b$. Since $G$ is cyclic we can write $c = x^n$
+    where $<x> = G$ So we write
+    
+    $$
+    b = \phi(c) = \phi(x^n) = \phi(\underbrace{x \dots x}_{n \text{ times}})
+    = \underbrace{\phi(x) \dots \phi(x)}_{n \text{ times}} = \phi(x)^n
+    $$
+
+    So any element in $G'$ can be written as a power of $\phi(x)$. So $G'$ is
+    the cyclic group $<\phi(x)>$.
+
+\item[(b)] Show $G'$ is Abelian if $G$ is Abelian.
+
+    Let $a$ and $b$ be elements of $G'$. Then since $\phi$ is surjective $a$
+    and $b$ correspond to some $c$ and $d$ in $G$ where $a = \phi(c)$, $b =
+    \phi(d)$. Knowing this and the fact that $G$ is Abelian, we can write
+
+    $$
+    ab = \phi(c) \phi(d) = \phi(cd) = \phi(dc) = \phi(d) \phi(c) = ba
+    $$
+
+    So $ab = ba$, so $G'$ is Abelian too.
+
 \end{proof}
 
 %%%%%%%%%%%%6.1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -200,8 +393,59 @@ Let $G'$ be a group of real matrices of the form $\left (  \begin{array}{cc}
 \end{exer}
 
 \begin{proof}[Proof]
-Type your proof here!
+    Let $a$ and $b$ be in $\mathbb R$. Then
+    $$
+    \phi(a + b) = 
+    \left (  \begin{array}{cc}
+        1 & a + b \\
+        0 & 1 
+    \end{array} \right )\\
+    \phi(a) \phi(b)
+    =
+    \left (  \begin{array}{cc}
+        1 & a \\
+        0 & 1 
+    \end{array} \right )
+    \left (  \begin{array}{cc}
+        1 & b \\
+        0 & 1 
+    \end{array} \right )
+    =
+    \left (  \begin{array}{cc}
+        1 & a + b \\
+        0 & 1 
+    \end{array} \right ) \\
+    $$
+
+    So $\phi$ is a homomorphism since $\phi(a + b) = \phi(a) \phi(b)$.  To be
+    an isomorphism, $\phi$ should be injective to its image.  This is true if
+    $\ker \phi  = \{ I_{\mathbb R^+} \}$. The identity element of $\mathbb R^+$
+    is $0$. And clearly
+
+    $$
+    \phi(0) = 
+    \left (  \begin{array}{cc}
+        1 & 0 \\
+        0 & 1 
+    \end{array} \right ) \\
+    $$
+
+    But we must check that no other elements are in the kernel. To show this we
+    assume there is another element, $a$ in the kernel. So 
+     
+    $$
+    \phi(a) = 
+    \left (  \begin{array}{cc}
+        1 & 0 \\
+        0 & 1 
+    \end{array} \right ) \\
+    $$
+
+    But this implies $a = 0$. So $\ker \phi = \{0\}$. This implies 
+    that $\phi$ is injective. So $\phi$ is isomorphic to it's image.
+
 \end{proof}
+
 
 %%%%%%%%%%%%7.1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{exer}[7.1]
@@ -209,8 +453,22 @@ Let $G$ be a group. Prove that the relation $a \sim b$ if $b=gag^{-1}$ for some 
 \end{exer}
 
 \begin{proof}[Proof]
-Type your proof here!
+
+    The relation is transitive. If $a \sim b$ and $b \sim c$. Then for some $g$
+    and $g'$ in $G$ we have $b = gag^{-1}$ and $c = g'bg'^{-1} \implies b =
+    g'^{-1}cg'$. Combining these gives $g'^{-1}cg' = gag^{-1} \implies c =
+    (g'g)a(g^{-1}g'^{-1})$. But $g'g$ and $g'^{-1}g^{-1}$ are elements of $G$
+    since they are products of elements of $G$. So $a \sim c$.
+
+    The relation is symmetric. If $a \sim b$ then $b = gag^{-1}$ or $g^{-1}bg =
+    a$ but $g^{-1}$ and $g$ are inverses and in $G$. So $b \sim a$.
+
+    The relation is reflexive. If $a \sim a$ then $a = gag^{-1}$. Which is true
+
+    So the relation is an equivalence relation.
+
 \end{proof}
+
 
 %%%%%%%%%%%%8.1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{exer}[8.1]
