@@ -8,6 +8,7 @@
 
 \newcommand{\img}{\text{img }}
 \newcommand{\lcm}{\text{lcm }}
+\newcommand{\aut}{\text{Aut }}
 \newcommand{\cycle}[1]{(\mathbf{#1})}
 
 \begin{document}
@@ -45,6 +46,79 @@
 \end{exer}
 
 \begin{proof}
+    We find the stabilizer of the matrix by solving the equation:
+    \[
+        \frac{1}{ad - bc} 
+        \left[
+            \begin{array}{cc}
+                a & b \\
+                c & d
+            \end{array}
+        \right]
+        \left[
+            \begin{array}{cc}
+                1 & 0 \\
+                0 & 2
+            \end{array}
+        \right]
+        \left[
+            \begin{array}{cc}
+                d &-b \\
+               -c & a
+            \end{array}
+        \right]
+        =
+        \left[
+            \begin{array}{cc}
+                1 & 0 \\
+                0 & 2
+            \end{array}
+        \right]
+    \]
+    
+    With the constraint $ad - bc \neq 0$. We find for $ad = 1$ the
+    stabilizer is 
+    \[
+        \left[
+            \begin{array}{cc}
+                a & 0 \\
+                0 & d
+            \end{array}
+        \right]
+    \]
+
+    For the orbit we compute
+    \[
+        \frac{1}{ad - bc} 
+        \left[
+            \begin{array}{cc}
+                a & b \\
+                c & d
+            \end{array}
+        \right]
+        \left[
+            \begin{array}{cc}
+                1 & 0 \\
+                0 & 2
+            \end{array}
+        \right]
+        \left[
+            \begin{array}{cc}
+                d &-b \\
+               -c & a
+            \end{array}
+        \right]
+    \]
+    And see with the constraint $ad - bc \neq 0$ the orbit is
+    \[
+        \frac{1}{ad - bc}
+        \left[
+            \begin{array}{cc}
+                ad - 2bc & ab \\
+                -cd & -bc + 2ad
+            \end{array}
+        \right]
+    \]
 
 \end{proof}
 
@@ -56,6 +130,20 @@
 \end{exer}
 
 \begin{proof}
+    Let the representation be  $D_4 = \{r, l | r^4 = l^2 = 1, lr =
+    r^3l\}$.  We take the index $1$ as our element $s \in S$. This has
+    the stabilizer $H = \{lr, 1\}$. Then the cosets are $G/H = \{\{lr,
+    1\}, \{l, r\}, \{rl, r^2\}, \{r^2l, r^3\}\}$. 
+
+    The orbit of our element is the indices $O_s = \{1, 2, 3, 4\}$. Then
+    there is a bijection
+    \begin{align*}
+        G/H \rightarrow O_s \\
+        \{lr, 1\} \mapsto 1 \\
+        \{l, r\} \mapsto 2  \\
+        \{rl, r^2\} \mapsto 3   \\
+        \{r^2l, r^3\} \mapsto 4
+    \end{align*}
 
 \end{proof}
 
@@ -70,16 +158,29 @@
 
 \begin{proof}
 
+    Let $x$ be the permutation which cycles the group $x = (\mathbf{123
+    \dots n})$. And let the orbit of the first index be $O_1 = \{1, 2, 3
+    \dots n\}$. Since each permutation in $H$ sends $1 \mapsto 1$. Then
+    there is a bijection, $f(i) = x^{i-1}H$. Which sends index 1 to
+    index i. More explicitly.
+    \begin{align*}
+        S_n / H \rightarrow O_1 \\
+        H \mapsto 1 \\
+        xH \mapsto 2 \\
+        x^2 H \mapsto 3 \\
+        \dots   \\
+        x^{n-1} \mapsto n   \\
+    \end{align*}
 \end{proof}
 
 % % % % % % % % % % % % % % % % % % % % % % %
 
 \begin{exer}[6.M.2]
     \begin{enumerate}
-        \item Prove that the set Aut $G$ of automorphisms of a group $G$
+        \item Prove that the set $\aut{G}$ of automorphisms of a group $G$
             forms a group, the law of composition being the composition
             of functions.
-        \item Prove that the map $\phi : G \rightarrow \text{ Aut} G$
+        \item Prove that the map $\phi : G \rightarrow \aut{G}$
             defined by $g \leadsto$ (conjugation by $g$) is a
             homomorphism, and determine its kernel.
         \item The automorphisms that are obtained as conjugation by a
@@ -90,6 +191,42 @@
 \end{exer}
 
 \begin{proof}
+    \begin{enumerate}
+        \item Closure is satisfied. Let $f$ and $g$ be in $\aut{G}$.
+            Then $f \circ g$ is in $\aut{G}$ since $f \circ g(G) =
+            f(g(G)) = f(G) = G$.
+
+            The identity is in $G$. This is the identity homomorphism,
+            which is also a automorphism.
+
+            Inverses are satisfied. For any element $f$ in $\aut{G}$.
+            $f$'s inverse exists since $f$ is a bijection. And since $f:
+            G \rightarrow G$, $f^{-1}:G \rightarrow G$ too. So $f^{-1}$
+            is an automorphism. So $f^{-1}$ is in $\aut{G}$.
+
+        \item  For an $f$ in $G$ we define the homomorphism as $\phi(f)
+            = \psi_f$. Where $\psi_f(x) = fxf^{-1} \; \forall x \in G$.
+            So for any $f, g$ in $G$ we have $\phi(fg) = \psi_{fg}$ and
+            $\psi_{fg}(x) = fgxg^{-1}f^{-1} = \psi_f(gxg^{-1}) =
+            \psi_f( \psi_g(x)) = \psi_f \circ \psi_g(x) \implies \psi_f
+            \psi_g = \phi(f)\phi(g)$. So $\phi$ is a homomorphism.
+
+            The kernel $K$ of this homomorphism must map to the identity
+            homomorphism, for some element $k$ in the kernel  $\phi(K) =
+            \psi_K \implies psi_k(x) = kxk^{-1} = 1$. This is true for
+            all elements that commute with every element of the group.
+            So the kernel is the center of G.
+
+        \item Let $c$ be any element in the center of $G$ so $\psi_c$ is
+            an inner automorphism, and let $\phi$ be an arbitrary
+            automorphism.  So $\phi \psi_c \phi^{-1} \implies \phi(x)
+            \psi_c(x) \phi(x)^{-1}$. Since $\phi$ is an automorphism
+            $\phi(x)$ is in $G$ and so is it's inverse. Let $\phi(x) =
+            a$ then we have $a\psi_c(x)a^{-1} = acxc^{-1}a^{-1} =
+            \psi_{ca}(x)$, which is in $\aut{G}$ so the inner
+            automorphisms are a normal subgroup.
+
+    \end{enumerate}
 
 \end{proof}
 
@@ -97,12 +234,27 @@
 
 \begin{exer}[6.M.3]
     Determine the groups of automorphisms (see Exercise M.2) of the
-    group \textbf{(a)} $C_4$ \textbf{(b)} $C_6$, \textbf{(c)} $C_2
-    \times C_2$, \textbf{(d)} $D_4$, \textbf{(e)} the quaternion group
+    group \textbf{(1)} $C_4$ \textbf{(2)} $C_6$, \textbf{(3)} $C_2
+    \times C_2$, \textbf{(4)} $D_4$, \textbf{(5)} the quaternion group
     $H$.
 \end{exer}
 
 \begin{proof}
+    \begin{enumerate}
+        \item Recall automorphisms of a cyclic group must send
+            generators to generators, so we have the group of
+            homomorphisms $x \mapsto \{x, x^3\}$.
+
+        \item By the same logic as part 1 we have $ x \mapsto \{x, x^5\}$.
+
+        \item By guessing we have $(x, y) \mapsto \{(x,y), (y,x)\}$
+            
+        \item Again by guessing $r \mapsto r, l \mapsto \{l, l^3\}$.
+
+        \item Still guessing, identity map, in cycle notation $(ijk),
+            (ikj), (ij), (ik), (jk)$.
+
+    \end{enumerate}
 
 \end{proof}
 
@@ -114,6 +266,11 @@
 \end{exer}
 
 \begin{proof}
+    If we choose some $h$ in $H$ then $O_h = H$ since $H$ is closed. If
+    we choose some $g$ in $G$ then $O_g = G - H$. Because if $H$ sent
+    $g$ to $H$ then for some $h_1$ and $h_2$ in $H$: $h_1
+    g = h_2 \implies g = h_2 h_{2}^{-1}$ so $g$ would be in $H$ which is
+    a contradiction.
 
 \end{proof}
 
@@ -125,6 +282,12 @@
 \end{exer}
 
 \begin{proof}
+    Since $|C_x| = 12$ and $|G| = 12$, $|Z(x)| = 3$. And since $|Z(x)|
+    \neq |G|$, $x$ cannot be in the center of $G$. Therefore $|Z(x)|$
+    must be greater than $|Z|$, since it must include the center and an
+    additional element. So $|Z| < 3$, but $|Z|$ cannot be $2$ since $Z$
+    is a subgroup of $Z(x)$ and its order must divide $Z(x)$. So it must
+    be order 1. And therefore it must be the trivial group.
 
 \end{proof}
 
@@ -137,6 +300,18 @@
 \end{exer}
 
 \begin{proof}
+    Consider two conjugate elements $a$ and $b$ such that $a = gbg^{-1}$
+    for some $g \in G$. Then $\phi$ acting on $a$ gives:
+    \[
+        \phi(a)= a^n = (gbg^{-1})^n =
+        (gbg^{-1})(gbg^{-1})(gbg^{-1}) \dots 
+    \]
+    We can then cancel out the inner $gg^{-1}$ factors to get
+    \[
+        \phi(a) = g b^n g^{-1}
+    \]
+    So we can say it raises elements in the conjugacy classes to the
+    power $n$.
 
 \end{proof}
 
@@ -152,6 +327,31 @@
 \end{exer}
 
 \begin{proof}
+    \begin{enumerate}
+        \item No. There are $3$ elements that have a conjugacy class of
+            order $1$, so there are $3$ elements with a centralizer of
+            order $10$. So there must be at least $3$ elements in the
+            center.
+
+            But there is a conjugacy class of order $5$. Which implies
+            some element has a centralizer of order $2$. But the
+            centralizer must contain the center. Since the center is
+            order $3$ this is impossible.
+
+        \item This seems fine\dots
+
+        \item No. A conjugacy class of order $4$ is impossible because
+            it would require a non-integer order of the centralizer.
+
+        \item No. Since there are two elements with conjugacy classes of
+            order $1$, there are two elements in the center.
+
+            But there is also a conjugacy class of order $2$ which
+            implies a centralizer of order $5$. However this
+            centralizer cannot contain the center since the order of the
+        center does not divide its order.
+
+    \end{enumerate}
 
 \end{proof}
 
@@ -159,23 +359,70 @@
 
 \begin{exer}[7.2.8]
     Determine the possible class equations of nonabelian groups of order
-    \textbf{(a)}8, \textbf{(b)}21.
+    \textbf{(1)}8, \textbf{(2)}21.
 \end{exer}
 
 \begin{proof}
+    \begin{enumerate}
+        \item For a group of order 8 we note that the divisors are $1,
+            2, 4, 8$. Then as always we have:
+            \[
+                1 \times 8
+            \]
+
+            Trying class equations with a center of order $2$ we find:
+            \[
+                1 + 1 + 2 + 2 + 2
+            \]
+            Since the center is order $2$ here the centralizer's must
+            have order greater than $3$, so we can't use any conjugacy
+            classes of order $4$.
+
+        \item For a group of order $21$ we note the divisors are $1, 3,
+            7, 21$. Then we have the trivial class equation:
+            \[
+                1 \times 21
+            \]
+            Trying groups with a center of order $1$ we see that there
+            can be only one class equation that correctly sums to $21$.
+            \[
+                1 + 3 + 3 + 7 + 7
+            \]
+            All other attempts at forming class equations fail.
+            
+    \end{enumerate}
 
 \end{proof}
 
 % % % % % % % % % % % % % % % % % % % % % % %
 
 \begin{exer}[7.2.9]
-    Determine the class equations for the following groups: \textbf{(a)}
-    the quaternion group, \textbf{(b)} $D_4$, \textbf{(c)} $D_5$,
-    \textbf{(d)} the subgroup of $GL_2(\mathbb{F}_3)$ of invertible
+    Determine the class equations for the following groups: \textbf{(1)}
+    the quaternion group, \textbf{(2)} $D_4$, \textbf{(3)} $D_5$,
+    \textbf{(4)} the subgroup of $GL_2(\mathbb{F}_3)$ of invertible
     upper triangular matrices.
 \end{exer}
 
 \begin{proof}
+    \begin{enumerate}
+        \item The quaternions are order 8 and non-abelian. From the
+            previous problem we know that the class equations that
+            correspond to a group of order 8 are $1 \times 8$ and $1 + 1
+            + 2 + 2 + 2$. Since the quaternions are not abelian, the
+            center is not the whole group. So the class equation is the
+            latter option.
+        
+        \item $D_4$ is also non-abelian, and order 8. So it has the same
+            class equation as the quaternions. $1 + 1 + 2 + 2 + 2$.
+
+        \item $D_5$ is order $10$ and non-abelian. Trying class
+            equations with a center of order $1$ we see only $1 + 2 + 2
+            + 5$ works out to the correct sum. We cannot have a center
+            of any other order because it would not divide the
+            corresponding centralizer's orders.
+
+        \item ?
+    \end{enumerate}
 
 \end{proof}
 
@@ -188,6 +435,22 @@
 \end{exer}
 
 \begin{proof}
+    $N$ is cyclic since $|N|$ is prime. Note that normal subgroups are
+    unions of conjugacy classes. To see this note that by a definition
+    of a normal subgroup
+    \[
+        \forall g \in G, \forall n \in N: \; gng^{-1} \in N \implies
+        \forall n \in N: \; C_n \subseteq N
+    \]
+    The conjugacy classes that compose $G$ and $N$ must be odd since
+    $|G|$ is odd so the possible class equations of $N$ are:
+    \[
+        |N| = 1 + 1 + 3 \quad \text{or} \quad |N| = 1 \times 5
+    \]
+    In either case the center is at least order 2. So a non-identity
+    element $x$ must exist in $N$ that commutes with the whole group.
+    Since $N$ is cyclic, this $x$ must generate all of $N$. Since $Z$ is
+    a group, and $x$ is in $Z$, $N$ is in $G$.
 
 \end{proof}
 
@@ -204,6 +467,24 @@
 \end{exer}
 
 \begin{proof}
+    \begin{enumerate}
+        \item There exists a subgroup of order 5, this is because there
+            is a conjugacy class of order 4 which implies a centralizer
+            of order 5. 
+
+            This subgroup is normal. It is order 5 so it must be cyclic,
+            and therefore all its elements commute with each other.
+
+        \item There exists a subgroup of order 4 because there is a
+            conjugacy class of order 5 which implies a centralizer of
+            order 4.
+
+            The subgroup is not normal. Since any non identity element
+            in it has a conjugacy class that is larger than the group.
+            So the conjugates of all the elements in the group cannot be
+            contained inside of it.
+
+    \end{enumerate}
 
 \end{proof}
 
@@ -215,6 +496,24 @@
 \end{exer}
 
 \begin{proof}
+
+    Note that the order of the conjugacy classes must divide the order
+    of the group, and the groups divisors are $1, p, q$. So there are
+    only 3 possible class equations.
+    \[
+        1 \times p + q \quad 1 \times q + p \quad 1 \times pq
+        \text{ (cyclic)}
+    \]
+    Now recall that any group who's order is the product of two relatively
+    prime integers $r$ and $s$ is isomorphic to the product of two
+    cyclic groups of order $r$ and $s$. This implies the class equation:
+    $1 \times pq$. So since the group is cyclic, it has cyclic subgroups
+    that are the order of its divisors $p$, and $q$. Therefore it
+    contains an element of order $p$.
+
+    
+
+
 
 \end{proof}
 
@@ -232,6 +531,22 @@
 \end{exer}
 
 \begin{proof}
+    Let the labels, going from the top left corner in the clockwise
+    direction be $a, b, c, d$. And let $r$ be a clockwise rotation, and
+    $l$ be a reflection across the vertical axis of symmetry. Then we
+    have the group $\{r, l | r^4 = l^2 = 1\}$.
+
+    \begin{enumerate}
+        \item Then the stabilizer of vertices $a, c$ is $\{1, rl\}$. The
+            stabilizer of vertices $b, d$ is $\{1, r^3l\}$. 
+
+            The stabilizer of edges $ab$ and $cd$ is $\{1, l\}$. The
+            stabilizer of edges $bc$ and $da$ is $\{1, r^2l\}$.
+
+        \item The stabilizer of the diagonals $ac$ and $bd$ are $\{1,
+            r^2, rl\}$.
+
+    \end{enumerate}
 
 \end{proof}
 
@@ -243,6 +558,15 @@
 \end{exer}
 
 \begin{proof}
+    $G_{aH} = aHa^{-1}$.
+
+    To see this, choose some $g \in aHa^{-1}$ then for some $h \in H$,
+    we have $g = aha^{-1}$. So $gaH = aha^{-1}aH = ahH = aH$. So
+    $aHa^{-1} \subseteq = G_{aH}$.
+
+    Next take some $g \in G_{aH}$. Then for some $h, h', h'' \in H$, we
+    have $gah = ah' \rightarrow g = ah'h^{-1}a^{-1} = ah''a^{-1}$. So
+    $G_{aH} \subseteq aHa^{-1}$. Therefore $G_{aH} = aHa^{-1}$.
 
 \end{proof}
 
@@ -253,6 +577,9 @@
 \end{exer}
 
 \begin{proof}
+    Yes. Checking the group operation axioms. $1 \times x = x1 = x$. And
+    $fg \times x = f \times (xg^{-1}) = x g^{-1} f^{-1}$. So both axioms
+    work, so it is a group operation.
 
 \end{proof}
 
@@ -264,6 +591,13 @@
 \end{exer}
 
 \begin{proof}
+    With the given information we can determine $|Z(x)|=7$ since the
+    order of the centralizer times the order of the conjugacy class must
+    equal the order of the group.
+
+    Since the centralizer is a subgroup, and prime order, it must be
+    cyclic. Since $x$ is in the aforementioned group, it must be order
+    $7$.
 
 \end{proof}
 
