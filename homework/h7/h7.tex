@@ -39,7 +39,9 @@
 
 \begin{exer}[11.1.1]
 
-    Prove that $7 + 2^{1/3}$ and $\sqrt{3} + \sqrt{-5}$ are algebraic n
+    Prove that $7 + 2^{1/3}$ and $\sqrt{3} + \sqrt{-5}$ are algebraic
+    numbers.
+
 \end{exer}
 
 \begin{proof}
@@ -48,6 +50,9 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \begin{exer}[11.1.2]
+
+    Prove that, for $n \neq 0$, $\cos{2\pi / n}$ is an algebraic number.
+
 \end{exer}
 
 \begin{proof}
@@ -56,6 +61,14 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \begin{exer}[11.1.3]
+
+    Let $\mathbb{Q}[\alpha, \beta]$ denote the smallest subring of
+    $\mathbb{C}$ containing the rational numbers $\mathbb{Q}$ and the
+    elements $\alpha = \sqrt{2}$ and $\beta = \sqrt{3}$. Let $\gamma =
+    \aspha + \beta$. Is $\mathbb{Q}[\alpha, \beta] =
+    \mathbb{Q}[\gamma]$? Is $\mathbb{Z}[\alpha, \beta] =
+    \mathbb{Z}[\gamma]$?
+
 \end{exer}
 
 \begin{proof}
@@ -64,6 +77,15 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \begin{exer}[11.1.8]
+
+    Determine the units in
+
+    \begin{enumerate}
+        \item $\mathbb{Z}/12\mathbb{Z}$
+        \item $\mathbb{Z}/8\mathbb{Z}$
+        \item $\mathbb{Z}/n\mathbb{Z}$
+    \end{enumerate}
+
 \end{exer}
 
 \begin{proof}
@@ -72,6 +94,10 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \begin{exer}[11.2.1]
+
+    For which positive integers $n$ does $x^2 + x + 1$ divide $x^4 +
+    3x^3 + x^2 + 7x + 5$ in $[\mathbb{Z}/(n)][x]$?
+
 \end{exer}
 
 \begin{proof}
@@ -80,6 +106,10 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \begin{exer}[11.3.1]
+
+    Prove that an ideal of a ring $R$ is a subgroup of the additive
+    group $R^+$.
+
 \end{exer}
 
 \begin{proof}
@@ -88,6 +118,10 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \begin{exer}[11.3.2]
+
+    Prove that every nonzero ideal in the ring of Gauss integers
+    contains a nonzero integer.
+
 \end{exer}
 
 \begin{proof}
@@ -96,6 +130,15 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \begin{exer}[11.3.3 a and d]
+
+    \begin{enumerate}
+        \item $\mathbb{R}[x, y] \rightarrow \mathbb{R}$ defined by $f(x,
+            y) \leadsto f(0, 0)$
+
+        \item $\mathbb{Z}[x] \rightarrow \mathbb{C}$ definede by $x
+            \leadsto \sqrt{2} + \sqrt{3}$
+
+    \end{enumerate}
 \end{exer}
 
 \begin{proof}
@@ -104,6 +147,22 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \begin{exer}[11.3.5]
+
+    The derivative of a polynomial $f$ with coefficients in a field $F$
+    is defined by the calculus formula $(a_n x^n + \dots + a_1 x + a_0)'
+    = n a_n x^{n-1} + \dots + 1 a_1$. The integre coefficients are
+    interpreted in $F$ using the unique homomorphism $\mathbb{Z}
+    \rightarrow F$.
+
+    \begin{enumerate}
+        \item Prove the product rule $(fg)' = f'g + fg'$ and the chain
+            rule $(f \circ g)' = (f' \circ g)g'$.
+
+        \item Let $\alpha$ be an element of $F$. Prove that $\alpha$ is
+            a multiple root of a polynomial $f$ if and only if it is a
+            common root of $f$ and of its derivative $f'$.
+
+    \end{enumerate}
 \end{exer}
 
 \begin{proof}
@@ -112,14 +171,13 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \begin{exer}[11.3.6]
-\end{exer}
 
-\begin{proof}
-\end{proof}
+    An \textit{automorphism} of a ring $R$ is an isomorphism from $R$ to
+    itself. Let $R$ be a ring. and let $f(y)$ be a polynomial in one
+    variable with coefficients in $R$. Prove that the map $R[x, y]
+    \rightarrow R[x, y]$ defined by $x \leadsto x + f(y)$, $y \leadsto
+    y$ is an automorphism of $R[x, y]$.
 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-
-\begin{exer}[11.3.6]
 \end{exer}
 
 \begin{proof}
@@ -128,6 +186,11 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \begin{exer}[11.3.8]
+
+    Let $R$ be a ring of prime characteristic $p$. Prove that the map $R
+    \rightarrow R$ defined by $x \leadsto x^p$ is a ring homomorphism.
+    (It is called the \textit{Frobbenius map}.)
+
 \end{exer}
 
 \begin{proof}
@@ -136,6 +199,12 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \begin{exer}[11.3.12]
+
+    Let $I$ and $J$ be ideals of a ring $R$. Prove that the set $I + J$
+    of elements of the form $x + y$, with $x$ in $I$ and $y$ in $J$, is
+    an ideal. This ideal is called the \textit{sum} of the ideals $I$
+    and $J$. 
+
 \end{exer}
 
 \begin{proof}
@@ -144,6 +213,15 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \begin{exer}[11.3.13]
+
+    Let $I$ and $J$ be ideals of a ring $R$. Prove that the intersection
+    $I \cap J$ is an ideal. Show by example that the set of products
+    $\{xy | x \in I, y \in J\}$ need not be an ideal, but that the set
+    of finite sums $\Sigma x_\nu y_\nu$ of products of elements of $I$
+    and $J$ is an ideal. This ideal is called the \textit{product
+    ideal}, and is denoted by $IJ$. Is there a relation between $IJ$ and
+    $I\capJ$?
+
 \end{exer}
 
 \begin{proof}
