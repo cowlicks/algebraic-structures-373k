@@ -8,6 +8,7 @@
 \newtheorem*{exer}{Exercise}
 
 % A few simple macros for group theory.
+\newcommand{\floor}{\text{floor }}
 \newcommand{\img}{\text{img }}
 \newcommand{\lcm}{\text{lcm }}
 \newcommand{\aut}{\text{Aut }}
@@ -15,7 +16,7 @@
 
 \begin{document}
 
-\textbf{Homework 4 -- Algebraic Structures} \\
+\textbf{Homework 7 -- Algebraic Structures} \\
 
 \hrule
 
@@ -45,6 +46,45 @@
 \end{exer}
 
 \begin{proof}
+
+    Recall that a number $x$ is \textit{algebraic} if it is the solution
+    to the equation $0 = a_n x^n + \dots + a_1 x + a_0$ for any set of
+    $a$'s in $\mathbb{Z}$.
+
+    So we must construct a polynomial for which the given numbers are
+    roots. 
+
+    For if we consider $7 + 2^{1/3}$ as the expression $x + y^{1/3}$ we
+    would want to construct a polynomial which has no terms with the
+    non-integer powers of $y$ eliminated which yields an integer we can
+    then choose $a_0$ to be minus this integer.
+
+    Consider 
+    \[
+        (x + y^{1/3})^3 = x^3 + 3x^2y^{1/3} + 3xy^{2/3} + y
+    \]
+    So we can choose the $a_2$ term to be $-3x = -21$ giving
+    \[
+        (x + y^{1/3})^3 - 3x(x + y^{1/3})^2 = -2x^3 - 3x^2y^{1/3} + y
+    \]
+    So no we can choose the $a_1$ term to be $3x^2 = 147$ giving
+    \[
+        (x + y^{1/3})^3 - 3x(x + y^{1/3})^2 + 3x^2(x + y^{1/3}) = x^3 +
+        y
+    \]
+    We then choose $a_0$ to be $x^3 + y = 345$. So $7 + 2^{1/3}$ is
+    algebraic because it is the root of the polynomial $y = x^3 - 21x^2
+    + 147x + 345$.
+
+    For the next part let $x = \sqrt{3} + \sqrt{-5}$ then:
+    \[
+        x = \sqrt{3} + \sqrt{-5} \implies x^2 = -2 + 2\sqrt{-15}
+        \implies (x^2 + 2)^2 = (2\sqrt{15})^2 \implies x^4 + 4x^2 + 64 =
+        0
+    \]
+    So $\sqrt{3} + \sqrt{-5}$ is algebraic because it is the root of the
+    equation $y = x^4 + 4x^2 + 64$.
+
 \end{proof}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
@@ -56,6 +96,37 @@
 \end{exer}
 
 \begin{proof}
+
+    Notice recall by Euler's theorem
+    \[
+        1 = \left(e^{2 \pi i /n} \right)^n = (\cos{2
+        \pi / n} + i \sin{2 \pi / n})^n)
+    \]
+    Then applying the binomial theorem we have
+    \[
+        1 = \sum_{j = 0}^{n} \binom{n}{j} \cos{(2 \pi / n)}^{n-j} \sin{(2
+        \pi /n)}^{j} i^j
+    \]
+    But the LHS is real, so the imaginary terms, which are where $j$ is
+    odd, sum to zero. So we can rewrite the sum with just the even $j$
+    letting $j \rightarrow 2k$ as
+    \[
+        1 = \sum_{k = 0}^{m} \binom{n}{2k} \cos{(2 \pi / n)}^{n - 2k}
+        \sin{(2 \pi / n)}^{2k}
+    \]
+    where $m = \floor(n/2)$. Now we can rewrite the sine term using trig
+    identity $\sin{(x)}^2 = 1 - \cos{(x)}^2$.
+    \[
+        1 = \sum_{k = 0}^{m} \binom{n}{2k} \cos{(2 \pi / n)}^{n - 2k}
+        (1 - \cos{(2 \pi / n)}^{2})^k
+    \]
+    Now letting $\cos{2 \pi /n} = x$ we see the polynomial
+    \[
+        y = -1 + \sum_{k = 0}^{m} \binom{n}{2k} x^{n - 2k}
+        (1 - x^{2})^k
+    \]
+    has the desired root, so $\cos{2 \pi / n}$ is algebraic.
+
 \end{proof}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
@@ -65,13 +136,33 @@
     Let $\mathbb{Q}[\alpha, \beta]$ denote the smallest subring of
     $\mathbb{C}$ containing the rational numbers $\mathbb{Q}$ and the
     elements $\alpha = \sqrt{2}$ and $\beta = \sqrt{3}$. Let $\gamma =
-    \aspha + \beta$. Is $\mathbb{Q}[\alpha, \beta] =
+    \alpha + \beta$. Is $\mathbb{Q}[\alpha, \beta] =
     \mathbb{Q}[\gamma]$? Is $\mathbb{Z}[\alpha, \beta] =
     \mathbb{Z}[\gamma]$?
 
 \end{exer}
 
 \begin{proof}
+    
+    Note that $\mathbb{Q}[\alpha + \beta]$ contains 
+    \begin{align*}
+        (1/3)(\alpha + \beta)^3 - 3(\alpha + \beta) = \sqrt{2} \\
+        (-1/3)(\alpha + \beta)^3 + 11/3(\alpha + \beta) = \sqrt{3}
+    \end{align*}
+
+    So $\alpha$ and $\beta$ are in $\mathbb{Q}[\alpha + \beta]$. So
+    $\mathbb{Q}[\alpha, \beta] \subseteq \mathbb{Q}[\alpha + \beta]$.
+
+    The other containment follows since $\alpha + \beta \in
+    \mathbb{Q}[\alpha, \beta]$ and $\mathbb{Q}[\alpha + \beta]$.
+
+    So $\mathbb{Q}[\alpha + \beta] = \mathbb{Q}[\alpha, \beta]$.
+    
+
+    But through trial and error I could not construct a polynomial in
+    $\mathbb{Z}[\alpha + \beta]$ that equals $\alpha$ or $\beta$. So no,
+    $\mathbb{Z}[\alpha, \beta]$ does not equal $\mathbb{Z}[\gamma]$.
+
 \end{proof}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
@@ -89,6 +180,30 @@
 \end{exer}
 
 \begin{proof}
+
+    Recall a \textit{unit} is a element of a ring that has a
+    multiplicative inverse.
+
+    \begin{enumerate}
+        \item The set of units in $\mathbb{Z}/12\mathbb{Z}$ is $\{1, 2,
+            3, 4, 6, 8, 9, 10\}$.
+
+        \item The set of units in $\mathbb{Z}/8\mathbb{Z}$ is $\{1, 2,
+            4, 6\}$.
+
+        \item The pattern in the previous two problems indicates that
+            elements which are coprime to the order of the quotient
+            group are \textit{not} units. This is reasonable, if we
+            consider a number $q$ that does not divide $n$. Then the
+            smallest number multiplied with $p$ that is congruent to $1$
+            is LCM($q,n$). But since $q$ does not divide $n$ this is
+            $qn$.  However there are only elements in the ring less than
+            $n$, so $q$ cannot be a unit.
+
+            So the units are $\mathbb{Z}/n\mathbb{Z} - \phi(n)$. Where
+            $\phi$ is Euler's totient function.
+
+    \end{enumerate}
 \end{proof}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
@@ -101,6 +216,15 @@
 \end{exer}
 
 \begin{proof}
+
+    Carrying out the division algorithm we find a result in the form $p
+    = qk + r$ is
+    \[
+        x^4 + 3x^3 + x^2 + 7x + 5 = (x^2 + x + 1)(x^2 + 2x - 2) + (7x +
+        7)
+    \]
+    The remainder here is $7x + 7$ which is zero if we choose $n = 7$.
+
 \end{proof}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
@@ -113,6 +237,27 @@
 \end{exer}
 
 \begin{proof}
+
+    Suppose we have some ideal $I = (a_1, \dots, a_n)$ of $R$. 
+
+    First, $I$ is contained in $R$ since $I = (a_1, \dots, a_n) = \{a_1
+    r_1 + \dots + a_n r_n | r_i \in R\}$, and all $a_i \in R$. Since $I$
+    is in $R$ we can consider it as part of $R^+$.
+
+    By definition $I$ contains all linear combinations of $a_i r_i$,
+    since elements of the form $a_i r_i$ are elements of $R^+$, linear
+    combinations of such elements are also in $R^+$. So $I$ is closed
+    under addition.
+
+    $I$ contains inverses. Consider an arbitrary element of the ideal
+    $r_1 a_1 + \dots + r_n a_n$. Since $R$ contains inverse elements
+    under addition, we can also construct the element $-r_1 a_1 - \dots
+    - r_n a_n$. Which is the inverse of $r_1 a_1 + \dots + r_n a_n$.
+    
+    $I$ contains the additive identity $0$. Since zero can be written
+    as a linear combination. i.e. $a_1 r_1 - a_1 r_1 = 0$ where $a_1 \in
+    I$ and $r_1, -r_1 \in R$.
+
 \end{proof}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
@@ -125,23 +270,49 @@
 \end{exer}
 
 \begin{proof}
+
+    Consider the ideal generated by some integer $a$ in the Gauss
+    integers. If $a$ is positive and real we are done since the ideal
+    must contain $a$.
+
+    If $a$ is negative and real. Then recall that the ideal is a
+    subgroup of the elements of the ring under addition. So it contains
+    additive inverses of each element. The additive inverse of a
+    negative element is positive. So the ideal contains $-a$, a positive
+    element.
+
+    If $a$ is complex then it's conjugate $\bar{a}$ is in the Gauss
+    integers so $\bar{a}a$ is in the ideal and it is real. By the above
+    arguments a real integer element in the ideal always implies a real
+    positive integer element in the ideal.
+    
 \end{proof}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \begin{exer}[11.3.3 a and d]
 
+    Find the generators for the kernels of the following maps:
+
     \begin{enumerate}
         \item $\mathbb{R}[x, y] \rightarrow \mathbb{R}$ defined by $f(x,
             y) \leadsto f(0, 0)$
 
-        \item $\mathbb{Z}[x] \rightarrow \mathbb{C}$ definede by $x
+        \item $\mathbb{Z}[x] \rightarrow \mathbb{C}$ defined by $x
             \leadsto \sqrt{2} + \sqrt{3}$
 
     \end{enumerate}
 \end{exer}
 
 \begin{proof}
+
+    Recall that the kernel of the map is the ideal generated by the
+    elements that are sent to zero.
+
+    \begin{enumerate}
+        \item The kernel is the ideal $(x, y)$.
+        \item The kernel is the ideal $(x -\sqrt{2} - \sqrt{3})$.
+    \end{enumerate}
 \end{proof}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
@@ -150,7 +321,7 @@
 
     The derivative of a polynomial $f$ with coefficients in a field $F$
     is defined by the calculus formula $(a_n x^n + \dots + a_1 x + a_0)'
-    = n a_n x^{n-1} + \dots + 1 a_1$. The integre coefficients are
+    = n a_n x^{n-1} + \dots + 1 a_1$. The integer coefficients are
     interpreted in $F$ using the unique homomorphism $\mathbb{Z}
     \rightarrow F$.
 
@@ -166,6 +337,37 @@
 \end{exer}
 
 \begin{proof}
+    \begin{enumerate}
+        \item To prove the product rule let $f = a_n x^n + \dots + a_2
+            x^2 + a_1 x + a_0$ and $g = b_m x^m + \dots b_2 x^2 + b_1 x
+            + b_0$. Then we have
+            \begin{align*}
+                & f' = n a_n x^{n - 1} + \dots 2 a_2 x + a_1 \\
+                & g' = m b_m x^{m - 1} + \dots 2 b_2 x + b_1 \\
+                & f'g = n a_n b_m x^{m + n -1} + \dots + (2 a_2 b_0 +
+                a_1 b_1)x + a_1 b_0 \\
+                & fg' = m a_n b_m x^{m + n - 1} + \dots (2 a_0 b_2 + a_1
+                b_1)x + a_0 b_1 \\
+                & \text{combining these} \\
+                & f'g + fg' = (n + m) a_n b_m x^{m + n - 1} + \dots +
+                2(a_0 b_2 + a_1 b_1 + a_2 b_0)x + a_0 b_1 + a_1 b_0
+            \end{align*}
+
+            Now consider $(fg)'$
+            \begin{align*}
+                [fg]' &= [(a_n x^n + \dots + a_2 x^2 + a_1 x +
+                a_0)(b_m x^m + \dots + b_2 x^2 + b_1 x + b_0)]'\\
+                &= [a_n b_m x^{m + n} + \dots + (a_0 b_2 + a_1 b_1 + a_2
+                b_0)x^2 + (a_0 b_1 + a_1 b_0)x + a_0 b_0]'\\
+                &= (n + m) a_n b_m x^{m + n - 1} + \dots + 2(a_0 b_2 +
+                a_1 b_1 + a_2 b_0)x + a_0 b_1 + a_1 b_0
+            \end{align*}
+
+            Clearly $(fg)' = f'g + fg'$
+
+        \item \dots
+
+    \end{enumerate}
 \end{proof}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
@@ -173,7 +375,7 @@
 \begin{exer}[11.3.6]
 
     An \textit{automorphism} of a ring $R$ is an isomorphism from $R$ to
-    itself. Let $R$ be a ring. and let $f(y)$ be a polynomial in one
+    itself. Let $R$ be a ring. And let $f(y)$ be a polynomial in one
     variable with coefficients in $R$. Prove that the map $R[x, y]
     \rightarrow R[x, y]$ defined by $x \leadsto x + f(y)$, $y \leadsto
     y$ is an automorphism of $R[x, y]$.
@@ -181,6 +383,19 @@
 \end{exer}
 
 \begin{proof}
+
+    Recall for a map to be an automorphism it must be a bijection from
+    the ring to itself. By definition we see that the map $\phi$ is from
+    $R$ to itself, so we must show that it is a bijection. 
+
+    To see the map is surjective, consider an element $r(x, y)$ in the
+    codomain $R[x, y]$, then the element $r(x - f(y), y)$ maps to this
+    with the given map.
+
+    Recall that the map $\phi$ is injective if and only if ker $\phi =
+    \{0\}$. I cannot construct a non-zero kernel for this map. So I
+    claim ker $\phi = \{0\}$. So the map is injective.
+
 \end{proof}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
@@ -189,11 +404,39 @@
 
     Let $R$ be a ring of prime characteristic $p$. Prove that the map $R
     \rightarrow R$ defined by $x \leadsto x^p$ is a ring homomorphism.
-    (It is called the \textit{Frobbenius map}.)
+    (It is called the \textit{Frobenius map}.)
 
 \end{exer}
 
 \begin{proof}
+
+    Recall for a map $\phi: R \rightarrow R'$ to be a ring homomorphism
+    it must satisfy for $a, b \in R$. 
+    \[ 
+        \phi(a + b) = \phi(a) + \phi(b), \quad \phi(ab) =
+        \phi(a)\phi(b), \quad \text{and} \quad \phi(1) = 1
+    \]
+    For the Frobenius map we obviously have th last condition $\phi(1)
+    = 1$.
+
+    We see the first condition is valid if we consider
+    \[
+        \phi(a_n x^n + \dots + a_1 x + a_0) = a_n x^{np} + \dots + a_1
+        x^p + a_0 = \phi(a_n x^n) + \dots + \phi(a_1 x) + \phi(a_0)
+    \]
+
+    We see the multiplicative condition is valid if we consider
+    \begin{align*}
+        \phi & \left(( a_n x^n + \dots + a_1 x + a_0)  (b_m x^m + \dots
+        b_1 x + b_0)\right) = \\
+        &= \phi(a_n b_m x^{n + m} + \dots + a_0 b_0) \\
+        &= a_n b_m x^{(n + m)p} + \dots + a_0 b_0 \\
+        &= (a_n x^{np} + \dots + a_0)(b_m x^{mp} + \dots + b_0) \\
+        &= \phi(a_n x^n + \dots a_0)\phi(b_m x^m + \dots + b_0)
+    \end{align*}
+
+    So the Frobenius map is a ring homomorphism.
+
 \end{proof}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
@@ -208,6 +451,26 @@
 \end{exer}
 
 \begin{proof}
+
+    Recall for $I + J$ to be an ideal it must be closed under addition,
+    and if $s$ is in $I + J$ and $r$ is in $R$, then $rs$ is in $I + J$.
+
+    First consider the closure condition, if we have two arbitrary
+    elements $a, b$ in $I + J$. They must be of the form $a = cx_1 +
+    dy_1$ and $b = ex_2 + fy_2$, where $c,d,b,e$ are in $R$, $x_i \in I$
+    and $y_i \in J$. Then we have the sum $a + b = (cx_1 + ex_2) + (dy_1 +
+    fy_2)$, the first term is in $I$ by
+    definition of an ideal, the second term is in $J$ by definition of
+    an ideal, and the sum is in $I + J$ by definition of $I + J$ given
+    in the problem.
+
+    For the second condition consider some element $s \in I + J$ and $r
+    \in R$. By definition of $I + J$ there is some $x \in I$ and $y \in
+    J$ such that $s = x + y$. And since $I$ and $J$ are ideals they
+    contain $rx$ and $ry$ respectively, so by our definition of $I + J$
+    it must contain an element $rx + ry = r(x + y) = rs$. So $I + J$
+    meets the both conditions, it is therefore an ideal.
+
 \end{proof}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
@@ -220,30 +483,43 @@
     of finite sums $\Sigma x_\nu y_\nu$ of products of elements of $I$
     and $J$ is an ideal. This ideal is called the \textit{product
     ideal}, and is denoted by $IJ$. Is there a relation between $IJ$ and
-    $I\capJ$?
-
-\end{exer}
-
-\begin{proof}
-\end{proof}
-
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-% Pre-lecture Problems
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-\section*{Pre-Lecture Problems}
-
-\begin{exer}[7.5.1]
-
-    A question you should be able to answer before class.
+    $I\cap J$?
 
 \end{exer}
 
 \begin{proof}
 
-    \dots
+    To show $I \cap J$ is an ideal we first prove the closure condition.
+    If $a$ and $b$ are elements of $I \cap J$ then $a \in I$, $a \in J$,
+    $b \in  I$, $b \in J$. So since $a$ and $b$ are in both $I$ and $J$,
+    $a + b$ is in both $I$ and $J$. So $a + b \in I \cap J$ and $I \cap
+    J$ is therefore closed under addition. 
+
+    For the ring-product condition consider some element $s \in I \cap
+    J$. Then $s$ is in both $I$ and $J$, which are ideals so both $I$
+    and $J$ contain $rs$ where $r$ is any element of the ring $R$. Since
+    $rs$ is in both $I$ and $J$ it is in $I \cap J$. 
+
+    So $I \cap J$ is an ideal.
+
+    For the next part consider $I = R[x]$ and $J = R[y]$, which are the
+    rings of polynomials in $x$ and $y$ respectively. So $IJ$ contains
+    the two elements $x^2$ and $y^2$ are both in $IJ$ but their sum $x^2
+    + y^2$ is not in $IJ$. So $IJ$, by this definition, is not an ideal.
+
+    For this definition of an ideal products, consider two elements $x =
+    a_1 b_1 + \dots + a_n b_n$ and $x = a'_1 b'_1 + \dots + a'_m b'_m$
+    in $IJ$.  Then $x + y = a_1 b_1 + a'_1 b'_1 + \dots + a_n b_m + a'_m
+    b'_m$ is in $IJ$ because it is also a finite some of products of
+    elements in $I$ and $J$. Next for the ring-product condition of an
+    ideal, if $s = a_1 b_1 + \dots a_n b_n$ is in $IJ$ and $r \in R$
+    then the elements $ra_1, \dots ra_n$ are in $I$ since it is an
+    ideal. And since these are elements of $I$ we can form $rs$ with
+    them as $rs = ra_1 b_1 + \dots ra_n b_n$. So $rs$ is in $IJ$ so $IJ$
+    is an ideal.
+
+    By inspection $I \cap J \supseteq IJ$.
 
 \end{proof}
-
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \end{document}
